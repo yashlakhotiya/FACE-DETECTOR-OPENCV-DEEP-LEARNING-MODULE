@@ -8,4 +8,4 @@ open the command prompt and write
 
         O R
 
-# open jupyter notebook and go to the file "FACE DETECTION.ipnyb" and run all the cells.
+# open jupyter notebook and go to the file "FACE DETECTION.ipynb" and run all the cells.
