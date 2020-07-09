@@ -1,2 +1,3 @@
 # FACE-DETECTOR-OPENCV-DEEP-LEARNING-MODULE
-pip install imutils to install imutils
+# To install imutils
+$ pip install imutils
