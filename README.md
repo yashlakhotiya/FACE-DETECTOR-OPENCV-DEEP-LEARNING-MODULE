@@ -9,3 +9,5 @@
 #        O R
 
 open jupyter notebook and go to the file "FACE DETECTION.ipynb" and run all the cells.
+
+# MAKE SURE OPENCV, IMUTILS AND PYTHON ARE INSTALLED IN YOUR DEVICE
