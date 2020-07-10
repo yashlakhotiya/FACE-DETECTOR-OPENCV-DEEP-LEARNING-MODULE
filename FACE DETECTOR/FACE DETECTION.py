@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[27]:
+# In[41]:
 
 
 import numpy as np
@@ -12,30 +12,30 @@ import imutils
 #pip install imutils
 
 
-# In[28]:
+# In[71]:
 
 
 prototext_path = "deploy.prototxt.txt"
 model_path = "res10_300x300_ssd_iter_140000.caffemodel"
-conf_threshold = 0.5
+conf_threshold = 0.3
 
 
-# In[35]:
+# In[72]:
 
 
 detector = cv2.dnn.readNetFromCaffe(prototext_path, model_path)
 
 
-# In[ ]:
+# In[77]:
 
 
 cap = cv2.VideoCapture(0)
 time.sleep(2.0)
 while(True):
     ret,image = cap.read()
-    frame = imutils.resize(image,width=400)
+    image = imutils.resize(image,width=800)
     (h,w) = image.shape[:2]
-    blob = cv2.dnn.blobFromImage(cv2.resize(image, (300, 300)), 1.0,(300, 300), (104.0, 177.0, 123.0))
+    blob = cv2.dnn.blobFromImage(cv2.resize(image, (600,600)), 1.0,(600,600), (104.0, 177.0, 123.0))
     detector.setInput(blob)
     detections = detector.forward()
     for i in range(detections.shape[2]):
@@ -44,7 +44,7 @@ while(True):
             box = detections[0,0,i,3:7] * np.array([w,h,w,h])
             (startX, startY, endX, endY) = box.astype("int")
             text = "{:.2f}%".format(confidence * 100)
-            y = startY - 10 if startY-10 > 10 else staryY + 10
+            y = startY - 10 if startY-10 > 10 else startY + 10
             cv2.rectangle(image, (startX, startY), (endX, endY),(0, 0, 255), 2)
             cv2.putText(image, text, (startX, y),cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 255), 2)
     cv2.imshow("Output", image)
@@ -52,6 +52,12 @@ while(True):
         cap.release()
         break
 cv2.destroyAllWindows()
+
+
+# In[ ]:
+
+
+
 
 
 # In[ ]:
